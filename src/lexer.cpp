@@ -1,43 +1,80 @@
 #include "lexer.hpp"
 #include <cctype>
 
-Lexer::Lexer(const std::string& source) : source(source), index(0) {}
+Lexer::Lexer(std::string source) : source(std::move(source)) {}
 
-Token Lexer::next_token() {
-    while (index < source.size() && std::isspace(source[index])) {
-        index++;
-    }
+std::vector<Token> Lexer::tokenize() {
+    std::vector<Token> tokens;
 
-    if (index >= source.size()) {
-        return {TokenType::End, ""};
-    }
+    while (!isAtEnd()) {
+        skipWhitespace();
+        if (isAtEnd()) break;
 
-    char current = source[index];
-
-    if (std::isdigit(current)) {
-        std::string number;
-        while (index < source.size() && std::isdigit(source[index])) {
-            number += source[index++];
+        char c = peek();
+        if (isDigit(c)) {
+            tokens.push_back(number());
+        } else if (isAlpha(c)) {
+            tokens.push_back(identifier());
+        } else {
+            switch (c) {
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                    tokens.push_back(Token(TokenType::OPERATOR, std::string(1, advance()), line, column));
+                    break;
+                case '(':
+                case ')':
+                case '{':
+                case '}':
+                case ';':
+                case ',':
+                    tokens.push_back(Token(TokenType::PUNCTUATION, std::string(1, advance()), line, column));
+                    break;
+                default:
+                    // Handle error
+                    advance();
+                    break;
+            }
         }
-        return {TokenType::Number, number};
     }
 
-    if (current == '+') {
-        index++;
-        return {TokenType::Plus, "+"};
-    }
-    if (current == '-') {
-        index++;
-        return {TokenType::Minus, "-"};
-    }
-    if (current == '*') {
-        index++;
-        return {TokenType::Multiply, "*"};
-    }
-    if (current == '/') {
-        index++;
-        return {TokenType::Divide, "/"};
+    tokens.push_back(Token(TokenType::EOF_TOKEN, "", line, column));
+    return tokens;
+}
+
+Token Lexer::number() {
+    std::string num;
+    while (isDigit(peek())) {
+        num += advance();
     }
 
-    return {TokenType::Invalid, std::string(1, current)};
+    if (peek() == '.' && isDigit(source[position + 1])) {
+        num += advance();
+        while (isDigit(peek())) {
+            num += advance();
+        }
+    }
+
+    return Token(TokenType::NUMBER, num, line, column);
+}
+
+Token Lexer::identifier() {
+    std::string identifier;
+    while (isAlphaNumeric(peek())) {
+        identifier += advance();
+    }
+
+    // Check if it's a keyword
+    static const std::vector<std::string> keywords = {
+        "function", "if", "else", "return", "console"
+    };
+
+    for (const auto& keyword : keywords) {
+        if (identifier == keyword) {
+            return Token(TokenType::KEYWORD, identifier, line, column);
+        }
+    }
+
+    return Token(TokenType::IDENTIFIER, identifier, line, column);
 }

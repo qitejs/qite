@@ -1,21 +1,49 @@
+#include "qite.hpp"
 #include <iostream>
-#include "lexer.hpp"
-#include "parser.hpp"
-#include "interpreter.hpp"
+#include <fstream>
+#include <sstream>
+#include <filesystem>
 
-int main() {
-    std::string input;
-    std::cout << "Enter an expression: ";
-    std::getline(std::cin, input);
+std::string readFile(const std::string& path) {
+    std::ifstream file(path);
+    if (!file.is_open()) {
+        throw std::runtime_error("Could not open file: " + path);
+    }
 
-    Lexer lexer(input);
-    Parser parser(lexer);
-    ASTNode* root = parser.parse();
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
+}
 
-    Interpreter interpreter;
-    double result = interpreter.interpret(root);
-    std::cout << "Result: " << result << std::endl;
+int main(int argc, char* argv[]) {
+    Qite engine;
 
-    delete root; // Clean up the AST
+    if (argc > 1) {
+        try {
+            // Check if file exists
+            if (!std::filesystem::exists(argv[1])) {
+                std::cerr << "Error: File '" << argv[1] << "' does not exist." << std::endl;
+                return 1;
+            }
+
+            // Check file extension
+            std::string filename(argv[1]);
+            if (filename.substr(filename.find_last_of(".") + 1) != "js") {
+                std::cerr << "Error: File must have .js extension" << std::endl;
+                return 1;
+            }
+
+            // Read and execute file
+            std::string source = readFile(argv[1]);
+            engine.execute(source);
+        } catch (const std::exception& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+            return 1;
+        }
+    } else {
+        // Start REPL
+        engine.repl();
+    }
+
     return 0;
 }

@@ -1,33 +1,32 @@
-#ifndef PARSER_HPP
-#define PARSER_HPP
-
-#include "lexer.hpp"
-
-struct ASTNode {
-    TokenType type;
-    std::string value;
-    ASTNode* left = nullptr;
-    ASTNode* right = nullptr;
-
-    ~ASTNode() {
-        delete left;
-        delete right;
-    }
-};
+#pragma once
+#include <vector>
+#include "token.hpp"
+#include "ast.hpp"
 
 class Parser {
 public:
-    explicit Parser(Lexer& lexer);
-    ASTNode* parse();
+    explicit Parser(std::vector<Token> tokens);
+    std::vector<std::shared_ptr<Statement>> parse();
 
 private:
-    Lexer& lexer;
-    Token current_token;
+    std::vector<Token> tokens;
+    size_t current = 0;
 
-    void eat(TokenType type);
-    ASTNode* expression();
-    ASTNode* term();
-    ASTNode* factor();
+    std::shared_ptr<Statement> statement();
+    std::shared_ptr<Statement> ifStatement();
+    std::shared_ptr<Statement> functionDeclaration();
+    std::shared_ptr<Expression> expression();
+    std::shared_ptr<Expression> equality();
+    std::shared_ptr<Expression> comparison();
+    std::shared_ptr<Expression> term();
+    std::shared_ptr<Expression> factor();
+    std::shared_ptr<Expression> primary();
+
+    Token peek();
+    Token previous();
+    Token advance();
+    bool isAtEnd();
+    bool match(TokenType type);
+    bool check(TokenType type);
+    Token consume(TokenType type, const std::string& message);
 };
-
-#endif // PARSER_HPP

@@ -1,31 +1,26 @@
-#ifndef LEXER_HPP
-#define LEXER_HPP
-
+#pragma once
 #include <string>
-
-enum class TokenType {
-    Number,
-    Plus,
-    Minus,
-    Multiply,
-    Divide,
-    End,
-    Invalid
-};
-
-struct Token {
-    TokenType type;
-    std::string value;
-};
+#include <vector>
+#include "token.hpp"
 
 class Lexer {
 public:
-    explicit Lexer(const std::string& source);
-    Token next_token();
+    explicit Lexer(std::string source);
+    std::vector<Token> tokenize();
 
 private:
     std::string source;
-    size_t index;
-};
+    size_t position = 0;
+    int line = 1;
+    int column = 1;
 
-#endif // LEXER_HPP
+    char peek();
+    char advance();
+    bool isAtEnd();
+    Token number();
+    Token identifier();
+    void skipWhitespace();
+    bool isDigit(char c);
+    bool isAlpha(char c);
+    bool isAlphaNumeric(char c);
+};
