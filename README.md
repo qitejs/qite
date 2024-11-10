@@ -1,4 +1,4 @@
-<p align="center" style="font-size: 70px; font-weight: bold;">Qite</p>
+<h1 align="center">Qite</h1>
 
 <div align="center">
 
