@@ -30,10 +30,10 @@ cd qite
 ```
 
 ## Documentation
-Comprehensive documentation for Qite is available [here](https://github.com/qitejs/qite/blob/main/docs/getting-started.md). This resource covers setup, API usage, and advanced features.
+Comprehensive documentation for Qite is available [here](https://github.com/qitejs/qite/blob/master/docs/getting-started.md). This resource covers setup, API usage, and advanced features.
 
 ## Contributing
-Contributions are welcome! Feel free to fork the project, open issues, or submit pull requests. Check out our [contribution guide](https://github.com/qitejs/qite/blob/main/CONTRIBUTING.md) for more details.
+Contributions are welcome! Feel free to fork the project, open issues, or submit pull requests. Check out our [contribution guide](https://github.com/qitejs/qite/blob/master/CONTRIBUTING.md) for more details.
 
 ## License
-Qite is licensed under the [GPL-3.O License](https://github.com/qitejs/qite/blob/main/LICENSE).
+Qite is licensed under the [GPL-3.O License](https://github.com/qitejs/qite/blob/master/LICENSE).

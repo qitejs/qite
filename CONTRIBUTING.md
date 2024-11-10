@@ -69,9 +69,9 @@ Your pull request will be reviewed by project maintainers. Be prepared to make r
 - No racism, sexism, or any offensive content in commits/pull requests/comments.
 
 ## Additional Resources
-- [Qite Documentation](https://github.com/qitejs/qite/blob/main/docs/getting-started.md)
+- [Qite Documentation](https://github.com/qitejs/qite/blob/master/docs/getting-started.md)
 - [GitHub Issues](https://github.com/qitejs/qite/issues)
-- [GPL-3.0 License](https://github.com/qitejs/qite/blob/main/LICENSE)
+- [GPL-3.0 License](https://github.com/qitejs/qite/blob/master/LICENSE)
 - [C++ Documentation](https://cplusplus.com/doc/tutorial)
 
 We appreciate your contributions and support in making Qite a better project for everyone!
