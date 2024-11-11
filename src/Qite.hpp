@@ -6,9 +6,9 @@
 #include <vector>
 
 class Qite {
-public:
-    void execute(const std::string& code);
-    void executeFromFile(const std::string& filename);
+ public:
+  void execute(const std::string& code);
+  void executeFromFile(const std::string& filename);
 };
 
-#endif // QITE_H
+#endif  // QITE_H

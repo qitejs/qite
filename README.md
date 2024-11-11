@@ -36,4 +36,4 @@ Comprehensive documentation for Qite is available [here](https://github.com/qite
 Contributions are welcome! Feel free to fork the project, open issues, or submit pull requests. Check out our [contribution guide](https://github.com/qitejs/qite/blob/master/CONTRIBUTING.md) for more details.
 
 ## License
-Qite is licensed under the [GPL-3.O License](https://github.com/qitejs/qite/blob/master/LICENSE).
+Qite is licensed under the [The Qite License](https://github.com/qitejs/qite/blob/master/LICENSE).

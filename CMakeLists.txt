@@ -31,7 +31,7 @@ set(CPACK_PACKAGE_NAME "Qite")   # Name of the package
 set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")  # Use project version
 set(CPACK_PACKAGE_DESCRIPTION "A JavaScript execution engine.")  # Package description
 set(CPACK_PACKAGE_CONTACT "Qite Contributors And Owners")  # Package owners
-set(CPACK_PACKAGE_LICENSE "GPL-3.0")  # Specify the license
+set(CPACK_PACKAGE_LICENSE "The Qite License")  # Specify the license
 set(CPACK_PACKAGE_VENDOR "Qite")  # Vendor name
 
 include(CPack)  # Include CPack for packaging

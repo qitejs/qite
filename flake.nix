@@ -7,8 +7,13 @@
     # Function to build the package for a given platform
     buildPackage = platform: let
       inherit (nixpkgs.legacyPackages.${platform}) stdenv cmake;
-      # Directly reference the license you want to use
-      license = nixpkgs.legacyPackages.${platform}.licenses.gpl3; # Specify the GPL-3.0 license
+
+      # Define the custom license
+      customLicense = {
+        # Define the license attributes
+        name = "The Qite License";
+      };
+
     in
     stdenv.mkDerivation {
       pname = "qite";  # Name of the package
@@ -29,13 +34,13 @@
       # Define the install phase if you want to install the binary
       installPhase = ''
         mkdir -p $out/bin
-        cp build/qite $out/bin/ # Adjust if the executable has a different name
+        cp build/qite $out/bin/
       '';
 
       # Define a meta section for additional information
       meta = {
         description = "A JavaScript execution engine.";
-        license = license; # Use the license defined above
+        license = customLicense; # Use the custom license defined above
       };
     };
   in {

@@ -71,7 +71,7 @@ Your pull request will be reviewed by project maintainers. Be prepared to make r
 ## Additional Resources
 - [Qite Documentation](https://github.com/qitejs/qite/blob/master/docs/getting-started.md)
 - [GitHub Issues](https://github.com/qitejs/qite/issues)
-- [GPL-3.0 License](https://github.com/qitejs/qite/blob/master/LICENSE)
+- [License](https://github.com/qitejs/qite/blob/master/LICENSE)
 - [C++ Documentation](https://cplusplus.com/doc/tutorial)
 
 We appreciate your contributions and support in making Qite a better project for everyone!
