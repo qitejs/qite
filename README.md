@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![License](https://img.shields.io/github/license/qitejs/qite)
+![License](https://img.shields.io/badge/License-The_Qite_License-blue)
 ![Issues](https://img.shields.io/github/issues/qitejs/qite)
 ![Stars](https://img.shields.io/github/stars/qitejs/qite)
 ![Forks](https://img.shields.io/github/forks/qitejs/qite)
