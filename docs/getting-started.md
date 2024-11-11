@@ -23,6 +23,6 @@ make
 
 Now, you have a binary of Qite.
 
-## Using Qite as a library
+## Using Qite as a library / Embedding Qite
 
-Qite doesn't support full embedding yet. Check back soon.
+Qite doesn't support embedding (yet).
